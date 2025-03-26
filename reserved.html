@@ -82,7 +82,12 @@
     </footer>
     <script>
         fetch('http://52.42.220.254:3000/reservations')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch reservations: ${response.statusText}`);
+                }
+                return response.json();
+            })
             .then(data => {
                 const reservedList = document.getElementById('reservedList');
                 data.forEach(reservation => {
@@ -91,7 +96,10 @@
                     reservedList.appendChild(listItem);
                 });
             })
-            .catch(error => console.error('Error fetching reservations:', error));
+            .catch(error => {
+                console.error('Error fetching reservations:', error);
+                alert('Failed to load the reserved rooms list. Please try again later.');
+            });
     </script>
 </body>
 </html>
