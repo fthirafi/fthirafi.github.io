@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserved Rooms - TradomLab</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #0078d7;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .reserved-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .reserved-container h3 {
+            margin-bottom: 1rem;
+        }
+        .reserved-list {
+            list-style: none;
+            padding: 0;
+        }
+        .reserved-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Include header -->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header-placeholder').innerHTML = data);
+    </script>
+    <section class="reserved-container">
+        <h3>Reserved Rooms</h3>
+        <ul class="reserved-list" id="reservedList">
+            <!-- Reserved rooms will be dynamically populated -->
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; 2023 TradomLab. All rights reserved.</p>
+    </footer>
+    <script>
+        fetch('http://localhost:3000/reservations')
+            .then(response => response.json())
+            .then(data => {
+                const reservedList = document.getElementById('reservedList');
+                data.forEach(reservation => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Room: ${reservation.room}, Time: ${reservation.time}, Reserved By: ${reservation.reservedBy} (${reservation.company})`;
+                    reservedList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching reservations:', error));
+    </script>
+</body>
+</html>
