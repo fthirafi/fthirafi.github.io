@@ -81,7 +81,7 @@
         <p>&copy; 2023 TradomLab. All rights reserved.</p>
     </footer>
     <script>
-        fetch('http://52.42.220.254:3000/reservations')
+        fetch('https://52.42.220.254:3000/reservations') // Updated to HTTPS
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Failed to fetch reservations: ${response.statusText}`);
