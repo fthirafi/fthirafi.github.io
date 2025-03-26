@@ -35,6 +35,22 @@
             margin: 0.5rem 0;
             font-size: 1rem;
         }
+        .navigation-buttons {
+            margin-top: 2rem;
+        }
+        .navigation-buttons a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #0078d7;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        .navigation-buttons a:hover {
+            background-color: #005bb5;
+        }
         footer {
             background-color: #333;
             color: white;
@@ -45,15 +61,23 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Contact Us - TradomLab</h1>
-    </header>
+    <!-- Include header -->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('header-placeholder').innerHTML = data);
+    </script>
     <section class="contact">
         <h3>Contact Information</h3>
         <p><strong>Address:</strong> 123 TradomLab Street, Tokyo, Japan</p>
         <p><strong>Phone:</strong> +81-3-1234-5678</p>
         <p><strong>CEO:</strong> John Doe</p>
         <p><strong>CTO:</strong> Jane Smith</p>
+        <div class="navigation-buttons">
+            <a href="index.html#home">Go to Home</a>
+            <a href="index.html#reservations">Go to Reservations</a>
+        </div>
     </section>
     <footer>
         <p>&copy; 2023 TradomLab. All rights reserved.</p>
